@@ -26,6 +26,9 @@ namespace Candyshop.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("AmountInStock")
+                        .HasColumnType("int");
+
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
@@ -60,6 +63,7 @@ namespace Candyshop.Migrations
                         new
                         {
                             CandyId = 1,
+                            AmountInStock = 0,
                             CategoryId = 1,
                             Description = " Lorem ipsum dolor sit amet, consectetur adiposcing elit, sed do eiusmod tempor...",
                             ImageThumbnailUrl = "\\Images\\thumbnails\\chocolateCandy3-small.jpg",
@@ -72,6 +76,7 @@ namespace Candyshop.Migrations
                         new
                         {
                             CandyId = 2,
+                            AmountInStock = 0,
                             CategoryId = 1,
                             Description = " Lorem ipsum dolor sit amet, consectetur adiposcing elit, sed do eiusmod tempor...",
                             ImageThumbnailUrl = "\\Images\\thumbnails\\chocolateCandy-small.jpg",
@@ -84,6 +89,7 @@ namespace Candyshop.Migrations
                         new
                         {
                             CandyId = 3,
+                            AmountInStock = 0,
                             CategoryId = 1,
                             Description = " Lorem ipsum dolor sit amet, consectetur adiposcing elit, sed do eiusmod tempor...",
                             ImageThumbnailUrl = "\\Images\\thumbnails\\chocolateCandy2-small.jpg",
@@ -96,6 +102,7 @@ namespace Candyshop.Migrations
                         new
                         {
                             CandyId = 4,
+                            AmountInStock = 0,
                             CategoryId = 2,
                             Description = " Lorem ipsum dolor sit amet, consectetur adiposcing elit, sed do eiusmod tempor...",
                             ImageThumbnailUrl = "\\Images\\thumbnails\\FruitCandy-small.jpg",
@@ -108,6 +115,7 @@ namespace Candyshop.Migrations
                         new
                         {
                             CandyId = 5,
+                            AmountInStock = 0,
                             CategoryId = 2,
                             Description = " Lorem ipsum dolor sit amet, consectetur adiposcing elit, sed do eiusmod tempor...",
                             ImageThumbnailUrl = "\\Images\\thumbnails\\fruitCandy2-small.jpg",
@@ -120,6 +128,7 @@ namespace Candyshop.Migrations
                         new
                         {
                             CandyId = 6,
+                            AmountInStock = 0,
                             CategoryId = 2,
                             Description = " Lorem ipsum dolor sit amet, consectetur adiposcing elit, sed do eiusmod tempor...",
                             ImageThumbnailUrl = "\\Images\\thumbnails\\fruitCandy3-small.jpg",
@@ -132,6 +141,7 @@ namespace Candyshop.Migrations
                         new
                         {
                             CandyId = 7,
+                            AmountInStock = 0,
                             CategoryId = 3,
                             Description = " Lorem ipsum dolor sit amet, consectetur adiposcing elit, sed do eiusmod tempor...",
                             ImageThumbnailUrl = "\\Images\\thumbnails\\gummyCandy-small.jpg",
@@ -144,6 +154,7 @@ namespace Candyshop.Migrations
                         new
                         {
                             CandyId = 8,
+                            AmountInStock = 0,
                             CategoryId = 3,
                             Description = " Lorem ipsum dolor sit amet, consectetur adiposcing elit, sed do eiusmod tempor...",
                             ImageThumbnailUrl = "\\Images\\thumbnails\\gummyCandy2-small.jpg",
@@ -156,6 +167,7 @@ namespace Candyshop.Migrations
                         new
                         {
                             CandyId = 9,
+                            AmountInStock = 0,
                             CategoryId = 3,
                             Description = " Lorem ipsum dolor sit amet, consectetur adiposcing elit, sed do eiusmod tempor...",
                             ImageThumbnailUrl = "\\Images\\thumbnails\\gummyCandy3-small.jpg",
@@ -168,6 +180,7 @@ namespace Candyshop.Migrations
                         new
                         {
                             CandyId = 10,
+                            AmountInStock = 0,
                             CategoryId = 4,
                             Description = " Lorem ipsum dolor sit amet, consectetur adiposcing elit, sed do eiusmod tempor...",
                             ImageThumbnailUrl = "\\Images\\thumbnails\\halloweenCandy-small.jpg",
@@ -180,6 +193,7 @@ namespace Candyshop.Migrations
                         new
                         {
                             CandyId = 11,
+                            AmountInStock = 0,
                             CategoryId = 4,
                             Description = " Lorem ipsum dolor sit amet, consectetur adiposcing elit, sed do eiusmod tempor...",
                             ImageThumbnailUrl = "\\Images\\thumbnails\\halloweenCandy2-small.jpg",
@@ -192,6 +206,7 @@ namespace Candyshop.Migrations
                         new
                         {
                             CandyId = 12,
+                            AmountInStock = 0,
                             CategoryId = 4,
                             Description = " Lorem ipsum dolor sit amet, consectetur adiposcing elit, sed do eiusmod tempor...",
                             ImageThumbnailUrl = "\\Images\\thumbnails\\halloweenCandy3-small.jpg",
@@ -204,6 +219,7 @@ namespace Candyshop.Migrations
                         new
                         {
                             CandyId = 13,
+                            AmountInStock = 0,
                             CategoryId = 5,
                             Description = " Lorem ipsum dolor sit amet, consectetur adiposcing elit, sed do eiusmod tempor...",
                             ImageThumbnailUrl = "\\Images\\thumbnails\\hardCandy-small.jpg",
@@ -216,6 +232,7 @@ namespace Candyshop.Migrations
                         new
                         {
                             CandyId = 14,
+                            AmountInStock = 0,
                             CategoryId = 5,
                             Description = " Lorem ipsum dolor sit amet, consectetur adiposcing elit, sed do eiusmod tempor...",
                             ImageThumbnailUrl = "\\Images\\thumbnails\\hardCandy2-small.jpg",
@@ -228,6 +245,7 @@ namespace Candyshop.Migrations
                         new
                         {
                             CandyId = 15,
+                            AmountInStock = 0,
                             CategoryId = 5,
                             Description = " Lorem ipsum dolor sit amet, consectetur adiposcing elit, sed do eiusmod tempor...",
                             ImageThumbnailUrl = "\\Images\\thumbnails\\hardCandy3-small.jpg",
@@ -528,12 +546,10 @@ namespace Candyshop.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
                     b.Property<string>("LoginProvider")
-                        .HasColumnType("nvarchar(128)")
-                        .HasMaxLength(128);
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ProviderKey")
-                        .HasColumnType("nvarchar(128)")
-                        .HasMaxLength(128);
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ProviderDisplayName")
                         .HasColumnType("nvarchar(max)");
@@ -570,12 +586,10 @@ namespace Candyshop.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("LoginProvider")
-                        .HasColumnType("nvarchar(128)")
-                        .HasMaxLength(128);
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(128)")
-                        .HasMaxLength(128);
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Value")
                         .HasColumnType("nvarchar(max)");

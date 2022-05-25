@@ -54,6 +54,12 @@
             @Html.DisplayFor(model => model.IsInStock)
         </dd>
         <dt>
+            @Html.DisplayNameFor(model => model.AmountInStock)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AmountInStock)
+        </dd>
+        <dt>
             @Html.DisplayNameFor(model => model.Category)
         </dt>
         <dd>
@@ -64,6 +70,6 @@
     <form asp-action="DeleteCandy_">
         <input type="hidden" asp-for="CandyId" />
         <input type="submit" value="Delete" class="btn btn-default" /> |
-        <a asp-action="CandyList">Back to List</a>
+        <a asp-action="Index">Back to List</a>
     </form>
 </div>
