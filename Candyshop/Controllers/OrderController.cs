@@ -40,7 +40,7 @@ namespace Candyshop.Controllers
             {
                 foreach(var item in _shoppingCart.ShoppingCartItems)
                 {
-                    item.Candy.AmountInStock--;
+                    item.Candy.AmountInStock -= item.Amount;
                 }
                 _appDbContext.SaveChanges();
 
