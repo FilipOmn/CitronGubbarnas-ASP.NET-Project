@@ -13,11 +13,13 @@ namespace Candyshop.Controllers
     {
         private readonly IOrderRepository _orderRepository;
         private readonly ShoppingCart _shoppingCart;
+        private readonly AppDbContext _appDbContext;
 
-        public OrderController(IOrderRepository orderRepository , ShoppingCart shoppingCart)
+        public OrderController(IOrderRepository orderRepository , ShoppingCart shoppingCart, AppDbContext appDbContext)
         {
             _orderRepository = orderRepository;
             _shoppingCart = shoppingCart;
+            _appDbContext = appDbContext;
         }
 
         public IActionResult Checkout()
@@ -32,10 +34,16 @@ namespace Candyshop.Controllers
 
             if(_shoppingCart.ShoppingCartItems.Count == 0)
             {
-                ModelState.AddModelError("", "Youe cart is empty");
+                ModelState.AddModelError("", "Your cart is empty");
             }
             if (ModelState.IsValid)
             {
+                foreach(var item in _shoppingCart.ShoppingCartItems)
+                {
+                    item.Candy.AmountInStock--;
+                }
+                _appDbContext.SaveChanges();
+
                 _orderRepository.CreatOrder(order);
                 _shoppingCart.ClearCart();
                 return RedirectToAction("CheckoutComplete");
