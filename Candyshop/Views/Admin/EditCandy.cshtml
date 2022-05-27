@@ -46,6 +46,21 @@
                 </div>
             </div>
             <div class="form-group">
+                <label asp-for="Candy.SalePercentage" class="control-label"></label>
+                <input asp-for="Candy.SalePercentage" class="form-control" />
+                <span asp-validation-for="Candy.SalePercentage" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Candy.SaleStartDate" class="control-label"></label>
+                <input asp-for="Candy.SaleStartDate" class="form-control" />
+                <span asp-validation-for="Candy.SaleStartDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Candy.SaleEndDate" class="control-label"></label>
+                <input asp-for="Candy.SaleEndDate" class="form-control" />
+                <span asp-validation-for="Candy.SaleEndDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <div class="checkbox">
                     <label>
                         <input asp-for="Candy.IsInStock" /> @Html.DisplayNameFor(model => model.Candy.IsInStock)
