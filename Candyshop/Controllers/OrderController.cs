@@ -40,6 +40,11 @@ namespace Candyshop.Controllers
             {
                 foreach(var item in _shoppingCart.ShoppingCartItems)
                 {
+                    if(item.Candy.AmountInStock < item.Amount)
+                    {
+                        return RedirectToAction("CheckoutFailed");
+                    }
+
                     item.Candy.AmountInStock -= item.Amount;
                 }
                 _appDbContext.SaveChanges();
@@ -55,6 +60,12 @@ namespace Candyshop.Controllers
         public IActionResult CheckoutComplete()
         {
             ViewBag.CheckoutCompleteMessage = "Thank you for your order. Enjoy your candy";
+            return View();
+        }
+
+        public IActionResult CheckoutFailed()
+        {
+            ViewBag.CheckoutFailedMessage = "There is not enought candy in stock to complete this order";
             return View();
         }
     }

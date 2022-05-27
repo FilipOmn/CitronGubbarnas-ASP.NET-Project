@@ -32,7 +32,7 @@ namespace Candyshop.Controllers
             }
             else
             {
-                candies = _candyRepository.GetAllCandy.Where(c => c.Category.CategoryName == category);
+                candies = _candyRepository.GetAllCandy.Where(c => c.Category.CategoryName == category && c.AmountInStock > 0 && c.IsInStock == true);
 
                 currentCategory = _categoryRepository.GetAllCategories.FirstOrDefault(c => c.CategoryName == category)?.CategoryName;
             }
