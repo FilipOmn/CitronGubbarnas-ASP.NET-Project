@@ -8,6 +8,7 @@
             <th>Selected Amount</th>
             <th>Candy</th>
             <th class="text-right">Price</th>
+            <th class="text-right">Discount</th>
             <th class="text-right">Subtotal</th>
         </tr>
     </thead>
@@ -16,12 +17,13 @@
         {
             <tr>
                 <td class="text-left"><a asp-controller="ShoppingCart" asp-action="RemoveFromShoppingCar" 
-                                         asp-route-candyId="@item.Candy.CandyId" alt="">Decrease Amoount</a></td>
+                                         asp-route-candyId="@item.Candy.CandyId" alt="">Decrease Amount</a></td>
                 <td class="text-center">@item.Amount</td>
                 <td class="text-left">@item.Candy.Name</td>
                 <td class="text-right">@item.Candy.Price.ToString("c")</td>
+                <td class="text-right">@Convert.ToInt32(item.Candy.SalePercentage)%</td>
                 <td class="text-right">
-                    @((item.Amount * item.Candy.Price).ToString("c"))
+                    @((item.Amount * item.Candy.Price * ((100 - item.Candy.SalePercentage) / 100)).ToString("c"))
                 </td>
             </tr>
         }

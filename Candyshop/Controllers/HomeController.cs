@@ -21,7 +21,7 @@ namespace Candyshop.Controllers
         {
             var homeViewModel = new HomeViewModel
             {
-                CandyOnSale = _candyRepository.GetCandyOnSale.Where(c => c.AmountInStock > 0 && c.IsInStock == true)
+                CandyOnSale = _candyRepository.GetCandyOnSale.Where(c => c.AmountInStock > 0 && c.IsInStock == true && c.SalePercentage > 1 && c.IsOnSale == true)
         };
 
             return View(homeViewModel);

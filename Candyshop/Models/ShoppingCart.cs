@@ -99,7 +99,7 @@ namespace Candyshop.Models
         {
             var total = _appDbContext.ShoppingCartItems
                 .Where(c => c.ShoppingCartId == ShoppingCartId).Select
-                (c => c.Candy.Price * c.Amount).Sum();
+                (c => c.Candy.Price * ((100 - c.Candy.SalePercentage) / 100) * c.Amount).Sum();
 
             return total;
         }

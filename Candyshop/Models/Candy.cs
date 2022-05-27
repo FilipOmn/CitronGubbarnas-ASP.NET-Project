@@ -14,7 +14,7 @@ namespace Candyshop.Models
         public string ImageUrl { get; set; }
         public string ImageThumbnailUrl { get; set; }
         public bool IsOnSale { get; set; }
-        public int SalePercentage { get; set; }
+        public decimal SalePercentage { get; set; }
         
         public DateTime SaleStartDate { get; set; }
         public DateTime SaleEndDate { get; set; } 

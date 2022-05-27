@@ -56,8 +56,8 @@ namespace Candyshop.Migrations
                     b.Property<DateTime>("SaleEndDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("SalePercentage")
-                        .HasColumnType("int");
+                    b.Property<decimal>("SalePercentage")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<DateTime>("SaleStartDate")
                         .HasColumnType("datetime2");
@@ -82,7 +82,7 @@ namespace Candyshop.Migrations
                             Name = "Assorted Chocolet Candy",
                             Price = 4.95m,
                             SaleEndDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SalePercentage = 0,
+                            SalePercentage = 0m,
                             SaleStartDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
@@ -98,7 +98,7 @@ namespace Candyshop.Migrations
                             Name = "Assorted Chocolet Candy",
                             Price = 3.95m,
                             SaleEndDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SalePercentage = 0,
+                            SalePercentage = 0m,
                             SaleStartDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
@@ -114,7 +114,7 @@ namespace Candyshop.Migrations
                             Name = "Assorted Chocolet Candy",
                             Price = 2.95m,
                             SaleEndDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SalePercentage = 0,
+                            SalePercentage = 0m,
                             SaleStartDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
@@ -130,7 +130,7 @@ namespace Candyshop.Migrations
                             Name = "Assorted Fruit Candy",
                             Price = 6.95m,
                             SaleEndDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SalePercentage = 0,
+                            SalePercentage = 0m,
                             SaleStartDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
@@ -146,7 +146,7 @@ namespace Candyshop.Migrations
                             Name = "Assorted Fruit Candy",
                             Price = 3.95m,
                             SaleEndDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SalePercentage = 0,
+                            SalePercentage = 0m,
                             SaleStartDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
@@ -162,7 +162,7 @@ namespace Candyshop.Migrations
                             Name = "Assorted Fruit Candy",
                             Price = 4.95m,
                             SaleEndDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SalePercentage = 0,
+                            SalePercentage = 0m,
                             SaleStartDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
@@ -178,7 +178,7 @@ namespace Candyshop.Migrations
                             Name = "Assorted Gummy Candy",
                             Price = 4.95m,
                             SaleEndDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SalePercentage = 0,
+                            SalePercentage = 0m,
                             SaleStartDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
@@ -194,7 +194,7 @@ namespace Candyshop.Migrations
                             Name = "Assorted Gummy Candy",
                             Price = 6.95m,
                             SaleEndDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SalePercentage = 0,
+                            SalePercentage = 0m,
                             SaleStartDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
@@ -210,7 +210,7 @@ namespace Candyshop.Migrations
                             Name = "Assorted Gummy Candy",
                             Price = 4.95m,
                             SaleEndDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SalePercentage = 0,
+                            SalePercentage = 0m,
                             SaleStartDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
@@ -226,7 +226,7 @@ namespace Candyshop.Migrations
                             Name = "Assorted Halloween Candy",
                             Price = 3.95m,
                             SaleEndDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SalePercentage = 0,
+                            SalePercentage = 0m,
                             SaleStartDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
@@ -242,7 +242,7 @@ namespace Candyshop.Migrations
                             Name = "Assorted Halloween Candy",
                             Price = 5.95m,
                             SaleEndDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SalePercentage = 0,
+                            SalePercentage = 0m,
                             SaleStartDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
@@ -258,7 +258,7 @@ namespace Candyshop.Migrations
                             Name = "Assorted Halloween Candy",
                             Price = 6.95m,
                             SaleEndDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SalePercentage = 0,
+                            SalePercentage = 0m,
                             SaleStartDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
@@ -274,7 +274,7 @@ namespace Candyshop.Migrations
                             Name = "Assorted Hard Candy",
                             Price = 3.95m,
                             SaleEndDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SalePercentage = 0,
+                            SalePercentage = 0m,
                             SaleStartDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
@@ -290,7 +290,7 @@ namespace Candyshop.Migrations
                             Name = "Assorted Hard Candy",
                             Price = 2.95m,
                             SaleEndDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SalePercentage = 0,
+                            SalePercentage = 0m,
                             SaleStartDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
@@ -306,7 +306,7 @@ namespace Candyshop.Migrations
                             Name = "Assorted Hard Candy",
                             Price = 5.95m,
                             SaleEndDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SalePercentage = 0,
+                            SalePercentage = 0m,
                             SaleStartDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
                 });

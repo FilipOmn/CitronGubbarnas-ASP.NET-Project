@@ -29,7 +29,7 @@ namespace Candyshop.Models
                 var orderDetail = new OrderDetail
                 {
                     Amount = shoppingCartItem.Amount,
-                    Price = shoppingCartItem.Candy.Price,
+                    Price = shoppingCartItem.Candy.Price * ((100 - shoppingCartItem.Candy.SalePercentage)/100),
                     CandyId = shoppingCartItem.Candy.CandyId,
                     OrderId = order.OrderId
                 };

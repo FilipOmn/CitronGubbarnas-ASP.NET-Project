@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Candyshop.Migrations
 {
-    public partial class Added3NewFormGroupProperties : Migration
+    public partial class MightHaveFixedSales : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -13,11 +13,11 @@ namespace Candyshop.Migrations
                 nullable: false,
                 defaultValue: new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified));
 
-            migrationBuilder.AddColumn<int>(
+            migrationBuilder.AddColumn<decimal>(
                 name: "SalePercentage",
                 table: "Candies",
                 nullable: false,
-                defaultValue: 0);
+                defaultValue: 0m);
 
             migrationBuilder.AddColumn<DateTime>(
                 name: "SaleStartDate",
