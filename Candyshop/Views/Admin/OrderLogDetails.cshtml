@@ -1,0 +1,11 @@
+﻿@model CandyOrderDetailsViewModel
+
+
+<h3>Order Detail</h3>
+@foreach(var item in Model.OrderDetails)
+{
+    <p><strong>@item.Candy.Name</strong></p>
+    <p>Price: @item.Price</p>
+    <p>Amount: @item.Amount</p>
+    <br />
+}

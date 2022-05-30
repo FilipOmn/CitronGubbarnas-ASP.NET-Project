@@ -113,5 +113,29 @@ namespace Candyshop.Controllers
 
             return RedirectToAction("CandyList");
         }
+
+
+        [Authorize(Roles = "Admin")]
+        public IActionResult OrderLog()
+        {
+            return View(new OrderOrderDetailsViewModel 
+            {
+                Orders = _appDbContext.Orders,
+                OrderDetails = _appDbContext.OrderDetails
+            });
+        }
+
+
+        [Authorize(Roles = "Admin")]
+        public IActionResult OrderLogDetails(int id)
+        {
+            var OrderDetails = _appDbContext.OrderDetails.Include("Candy").Where(o => o.OrderId == id);
+
+            return View(new CandyOrderDetailsViewModel
+            {
+                Candies = _candyRepository.GetAllCandy,
+                OrderDetails = OrderDetails
+            });
+        }
     }
 }
