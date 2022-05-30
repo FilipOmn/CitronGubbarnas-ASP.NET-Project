@@ -19,10 +19,12 @@ namespace Candyshop.Controllers
         }
         public IActionResult Index()
         {
+            var date = DateTime.Now;
             var homeViewModel = new HomeViewModel
             {
-                CandyOnSale = _candyRepository.GetCandyOnSale.Where(c => c.AmountInStock > 0 && c.IsInStock == true && c.SalePercentage > 1 && c.IsOnSale == true)
-        };
+                CandyOnSale = _candyRepository.GetCandyOnSale.Where(c => c.AmountInStock > 0 && c.IsInStock == true && c.SalePercentage > 1 
+                                && c.IsOnSale == true && c.SaleStartDate <= date && c.SaleEndDate >= date)
+            };
 
             return View(homeViewModel);
         }
