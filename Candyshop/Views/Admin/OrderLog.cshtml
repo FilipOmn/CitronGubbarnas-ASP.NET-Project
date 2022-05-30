@@ -1,7 +1,16 @@
 ﻿@model OrderOrderDetailsViewModel
 
+<label for="stringName" class="cols-sm-2 control-
+label">@Html.Hidden("stringName", "")</label>
 
 <h2>Orders</h2>
+<select id="CurrencySelect">
+    <option value="EUR">EUR</option>
+    <option value="USD">USD</option>
+    <option value="GBP">GBP</option>
+</select>
+<button onclick="BtnClick()">Apply</button>
+<br />
 <table class="table table-bordered table-striped">
     <thead>
         <tr>
@@ -20,18 +29,53 @@
     <tbody>
         @foreach (var item in Model.Orders)
         {
-        <tr>
-            <td><a asp-controller="Admin" asp-action="OrderLogDetails" asp-route-id="@item.OrderId">@item.OrderId</a></td>
-            <td>@item.FirstName</td>
-            <td>@item.LastName</td>
-            <td>@item.PhoneNumber</td>
-            <td>@item.City</td>
-            <th>@item.Address</th>
-            <th>@item.State</th>
-            <th>@item.ZipCode</th>
-            <td>@item.OrderTotal.ToString("c")</td>
-            <td>@item.OrderPlaced</td>
-        </tr>
+            <tr>
+                <td><a asp-controller="Admin" asp-action="OrderLogDetails" asp-route-id="@item.OrderId">@item.OrderId</a></td>
+                <td>@item.FirstName</td>
+                <td>@item.LastName</td>
+                <td>@item.PhoneNumber</td>
+                <td>@item.City</td>
+                <th>@item.Address</th>
+                <th>@item.State</th>
+                <th>@item.ZipCode</th>
+                <td>@item.OrderTotal.ToString("c")</td>
+                <td>@item.OrderPlaced</td>
+            </tr>
         }
     </tbody>
 </table>
+
+<script>
+    var Result;
+
+
+    var myHeaders = new Headers();
+    myHeaders.append("apikey", "j6oL2F9e9MkRUeNLRydtSNMEw6yatyqW");
+
+    var requestOptions = {
+        method: 'GET',
+        redirect: 'follow',
+        headers: myHeaders
+    };
+
+    fetch("https://api.apilayer.com/exchangerates_data/latest?symbols=USD,EUR,GBP&base=SEK", requestOptions)
+        .then(response => response.json())
+        .then(result => HandleJsonData(result))
+        .catch(error => console.log('error', error));
+
+    function HandleJsonData(data) {
+        Result = data;
+    }
+
+    function BtnClick() {
+        var value = document.getElementById("CurrencySelect");
+
+        if (value.value == "USD") {
+            console.log(Result.rates.USD);
+        }
+
+        if (value.value == "EUR") {
+            console.log(Result.rates.EUR);
+        }
+    }
+</script>
