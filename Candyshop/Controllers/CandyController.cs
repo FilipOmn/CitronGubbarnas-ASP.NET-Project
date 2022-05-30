@@ -32,7 +32,7 @@ namespace Candyshop.Controllers
             }
             else
             {
-                candies = _candyRepository.GetAllCandy.Where(c => c.Category.CategoryName == category && c.AmountInStock > 0 && c.IsInStock == true);
+                candies = _candyRepository.GetAllCandy.Where(c => c.Category.CategoryName == category && c.AmountInStock > 0 && c.IsInStock == true && c.SaleStartDate <= DateTime.Now && c.SaleEndDate >= DateTime.Now);
 
                 currentCategory = _categoryRepository.GetAllCategories.FirstOrDefault(c => c.CategoryName == category)?.CategoryName;
             }
@@ -40,7 +40,7 @@ namespace Candyshop.Controllers
             {
                 Candies = candies, 
                 CurrentCategory = currentCategory });
-        }
+            }
 
         public IActionResult Details(int id)
         {
