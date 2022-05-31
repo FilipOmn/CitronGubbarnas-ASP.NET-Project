@@ -12,11 +12,13 @@ namespace Candyshop.Controllers
     {
         private readonly ICandyRepository _candyRepository;
         private readonly ICategoryRepositoty _categoryRepository;
+        private readonly AppDbContext _appDbContext;
 
-        public CandyController(ICandyRepository candyRepository, ICategoryRepositoty categoryRepository)
+        public CandyController(ICandyRepository candyRepository, ICategoryRepositoty categoryRepository, AppDbContext appDbContext)
         {
             _candyRepository = candyRepository;
             _categoryRepository = categoryRepository;
+            _appDbContext = appDbContext;
         }
 
         public ViewResult List(string category)
@@ -24,7 +26,25 @@ namespace Candyshop.Controllers
              
             IEnumerable<Candy> candies;
             string currentCategory;
-            
+
+            var date = DateTime.Now;
+
+            var candiesGoingOffSale = _candyRepository.GetAllCandy.Where(c => c.SaleStartDate > date || c.SaleEndDate < date);
+            var candiesGoingOnSale = _candyRepository.GetAllCandy.Where(c => c.SaleStartDate <= date && c.SaleEndDate >= date);
+
+            foreach (var item in candiesGoingOffSale)
+            {
+                item.IsOnSale = false;
+            }
+            _appDbContext.SaveChanges();
+
+            foreach (var item in candiesGoingOnSale)
+            {
+                item.IsOnSale = true;
+            }
+            _appDbContext.SaveChanges();
+
+
             if (string.IsNullOrEmpty(category))
             {
                 candies = _candyRepository.GetAllCandy.Where(c => c.AmountInStock > 0 && c.IsInStock == true);
@@ -32,7 +52,7 @@ namespace Candyshop.Controllers
             }
             else
             {
-                candies = _candyRepository.GetAllCandy.Where(c => c.Category.CategoryName == category && c.AmountInStock > 0 && c.IsInStock == true && c.SaleStartDate <= DateTime.Now && c.SaleEndDate >= DateTime.Now);
+                candies = _candyRepository.GetAllCandy.Where(c => c.Category.CategoryName == category && c.AmountInStock > 0 && c.IsInStock == true);
 
                 currentCategory = _categoryRepository.GetAllCategories.FirstOrDefault(c => c.CategoryName == category)?.CategoryName;
             }
