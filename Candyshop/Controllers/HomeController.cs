@@ -21,8 +21,8 @@ namespace Candyshop.Controllers
         public IActionResult Index()
         {
             var date = DateTime.Now;
-            var candiesGoingOffSale = _candyRepository.GetAllCandy.Where(c => c.SaleStartDate < date && c.SaleEndDate > date);
-            var candiesGoingOnSale = _candyRepository.GetAllCandy.Where(c => c.SaleStartDate == date);
+            var candiesGoingOffSale = _candyRepository.GetAllCandy.Where(c => c.SaleStartDate > date || c.SaleEndDate < date);
+            var candiesGoingOnSale = _candyRepository.GetAllCandy.Where(c => c.SaleStartDate <= date && c.SaleEndDate >= date);
            
             foreach (var item in candiesGoingOffSale)
             {
