@@ -3,6 +3,9 @@ using Candyshop.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using RestSharp;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -116,8 +119,65 @@ namespace Candyshop.Controllers
 
 
         [Authorize(Roles = "Admin")]
-        public IActionResult OrderLog()
+        public async Task<IActionResult> OrderLogAsync(int currency)
         {
+            var client = new RestClient("https://api.apilayer.com/exchangerates_data/latest?symbols=EUR,USD,GBP,SEK&base=SEK");
+
+            var request = new RestRequest()
+                .AddHeader("apikey", "j6oL2F9e9MkRUeNLRydtSNMEw6yatyqW");
+
+            var response = await client.GetAsync(request);
+
+            var jsonResponse = JsonConvert.DeserializeObject<dynamic>(response.Content);
+
+            if(currency == 1)
+            {
+                ViewBag.CurrencyExchange = jsonResponse.rates.EUR;
+                ViewBag.CurrencySymbol = "€";
+
+                return View(new OrderOrderDetailsViewModel
+                {
+                    Orders = _appDbContext.Orders,
+                    OrderDetails = _appDbContext.OrderDetails
+                });
+            }
+            if (currency == 2)
+            {
+                ViewBag.CurrencyExchange = jsonResponse.rates.USD;
+                ViewBag.CurrencySymbol = "$";
+
+                return View(new OrderOrderDetailsViewModel
+                {
+                    Orders = _appDbContext.Orders,
+                    OrderDetails = _appDbContext.OrderDetails
+                });
+            }
+            if (currency == 3)
+            {
+                ViewBag.CurrencyExchange = jsonResponse.rates.GBP;
+                ViewBag.CurrencySymbol = "£";
+
+                return View(new OrderOrderDetailsViewModel
+                {
+                    Orders = _appDbContext.Orders,
+                    OrderDetails = _appDbContext.OrderDetails
+                });
+            }
+            if (currency == 4)
+            {
+                ViewBag.CurrencyExchange = jsonResponse.rates.SEK;
+                ViewBag.CurrencySymbol = "Kr";
+
+                return View(new OrderOrderDetailsViewModel
+                {
+                    Orders = _appDbContext.Orders,
+                    OrderDetails = _appDbContext.OrderDetails
+                });
+            }
+
+            ViewBag.CurrencyExchange = 1m;
+            ViewBag.CurrencySymbol = "Kr";
+
             return View(new OrderOrderDetailsViewModel 
             {
                 Orders = _appDbContext.Orders,
