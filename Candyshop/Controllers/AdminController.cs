@@ -197,5 +197,10 @@ namespace Candyshop.Controllers
                 OrderDetails = OrderDetails
             });
         }
+
+        public IActionResult Dashboard()
+        {
+            return View();
+        }
     }
 }
