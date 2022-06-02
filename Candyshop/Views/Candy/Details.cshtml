@@ -6,14 +6,15 @@
     <div class="caption-full">
         @if (Model.IsOnSale)
         {
-            <h4 class="pull-right text-muted">@Model.Price.ToString("c")</h4><br />
-            <h4 class="pull-right text-danger">@((Model.Price * ((100 - Model.SalePercentage)/100)).ToString("c"))</h4>
-            <h4 class="pull-right">@Convert.ToInt32(Model.SalePercentage)% &nbsp; </h4>
-
+            <h4 class="pull-right">
+                <span class="text-danger">@Convert.ToInt32(Model.SalePercentage)% </span>
+                <span class="text-danger">@(Math.Round(Model.Price * ((100 - Model.SalePercentage)/100), 2)) kr</span>
+                <span class="text-muted">@Model.Price.ToString() kr</span>
+            </h4>
         }
         else
         {
-            <h4 class="pull-right">@Model.Price.ToString("c")</h4>
+            <h4 class="pull-right">@Model.Price.ToString() kr</h4>
         }
         <h3><a href="#">@Model.Name</a></h3>
         <p>@Model.Description</p>

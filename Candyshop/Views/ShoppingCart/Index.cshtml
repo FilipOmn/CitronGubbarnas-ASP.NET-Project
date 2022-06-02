@@ -24,10 +24,10 @@
             </td>
             <td class="text-center">@item.Amount</td>
             <td class="text-left">@item.Candy.Name</td>
-            <td class="text-right">@item.Candy.Price.ToString("c")</td>
+            <td class="text-right">@item.Candy.Price.ToString() kr</td>
             <td class="text-right">@Convert.ToInt32(item.Candy.SalePercentage)%</td>
             <td class="text-right">
-                @((item.Amount * item.Candy.Price * ((100 - item.Candy.SalePercentage) / 100)).ToString("c"))
+                @(Math.Round((item.Amount * item.Candy.Price * ((100 - item.Candy.SalePercentage) / 100)), 2)) kr
             </td>
         </tr>
         }
@@ -35,7 +35,7 @@
     <tfoot>
         <tr>
             <td colspan="4" class="text-right">Total</td>
-            <td class="text-right">@Model.ShoppingCartTotal.ToString("c")</td>
+            <td class="text-right">@Math.Round(Model.ShoppingCartTotal, 2) kr</td>
         </tr>
     </tfoot>
 </table>
