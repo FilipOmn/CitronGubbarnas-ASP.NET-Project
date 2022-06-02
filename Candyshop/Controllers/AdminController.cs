@@ -61,16 +61,17 @@ namespace Candyshop.Controllers
 
 
         [HttpPost]
-        public IActionResult EditCandy_(Candy candy)
+        public IActionResult EditCandy(CandyCategoryViewModel candyCategory)
         {
             if (ModelState.IsValid)
             {
-                _appDbContext.Entry(candy).State = EntityState.Modified;
+                _appDbContext.Entry(candyCategory.Candy).State = EntityState.Modified;
                 _appDbContext.SaveChanges();
 
                 return RedirectToAction("CandyList");
             }
-            return View(candy);
+            candyCategory.Category = _categoryRepository.GetAllCategories;
+            return View(candyCategory);
         }
 
 
@@ -88,7 +89,7 @@ namespace Candyshop.Controllers
 
 
         [HttpPost]
-        public IActionResult DeleteCandy_(Candy candy)
+        public IActionResult DeleteCandy(Candy candy)
         {
             _appDbContext.Remove(candy);
             _appDbContext.SaveChanges();
@@ -102,14 +103,13 @@ namespace Candyshop.Controllers
         {
             return View(new CandyCategoryViewModel 
             {
-                Category = _categoryRepository.GetAllCategories
-            
+                Category = _categoryRepository.GetAllCategories 
             });
         }
 
 
         [HttpPost]
-        public IActionResult CreateCandy_(Candy candy)
+        public IActionResult CreateCandy(Candy candy)
         {
             _appDbContext.Add(candy);
             _appDbContext.SaveChanges();
