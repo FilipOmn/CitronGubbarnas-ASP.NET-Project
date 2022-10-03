@@ -12,13 +12,15 @@ namespace Candyshop.Controllers
     {
         private readonly ICandyRepository _candyRepository;
         private readonly ICategoryRepositoty _categoryRepository;
+        private readonly ICandyRatingRepository _candyRatingRepository;
         private readonly AppDbContext _appDbContext;
 
-        public CandyController(ICandyRepository candyRepository, ICategoryRepositoty categoryRepository, AppDbContext appDbContext)
+        public CandyController(ICandyRepository candyRepository, ICategoryRepositoty categoryRepository, AppDbContext appDbContext, ICandyRatingRepository candyRatingRepository)
         {
             _candyRepository = candyRepository;
             _categoryRepository = categoryRepository;
             _appDbContext = appDbContext;
+            _candyRatingRepository = candyRatingRepository;
         }
 
         public ViewResult List(string category)
@@ -64,16 +66,22 @@ namespace Candyshop.Controllers
 
         public IActionResult Details(int id)
         {
-            var candy = _candyRepository.GetCandyById(id);
-            if(candy == null)
+            var candyViewModel = new CandyViewModel();
+            candyViewModel.Candy = _candyRepository.GetCandyById(id);
+            candyViewModel.CandyRatings = _candyRatingRepository.GetAllRatingsForSpecificCandy(id);
+            if (candyViewModel.Candy == null)
             {
                 return NotFound();
             }
                 
-
-            return View(candy);
-
-            
+            return View(candyViewModel);
+        }
+        public IActionResult RatingSuccess(CandyViewModel candyView, int candyId)
+        {
+            _candyRatingRepository.AddRatingToCandy(candyId, candyView.CandyRating);
+            CandyViewModel viewModel = new CandyViewModel();
+            viewModel.Candy = _candyRepository.GetCandyById(candyId);
+            return View(viewModel);
         }
     }
 }
