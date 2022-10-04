@@ -16,6 +16,7 @@ namespace Candyshop.Models
         }
         
         public DbSet<Candy> Candies { get; set; }
+        public DbSet<CandyRating> CandyRatings { get; set; }
         public DbSet<Category> Categores { get; set; }
         public DbSet<ShoppingCartItem> ShoppingCartItems { get; set; }
         public DbSet<Order> Orders { get; set; }

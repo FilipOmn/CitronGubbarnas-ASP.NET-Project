@@ -22,5 +22,9 @@ namespace Candyshop.Models
         public int AmountInStock { get; set; }
         public int CategoryId { get; set; }
         public Category Category { get; set; }
+
+        //Navigation Properties
+        public virtual ICollection<CandyRating> candyRatings { get; set; } 
+        public int RatingId { get; set; }
     }
 }
