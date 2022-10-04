@@ -10,10 +10,10 @@ namespace Candyshop.Controllers
 {
     public class CandyController : Controller
     {
-        private readonly ICandyRepository _candyRepository;
-        private readonly ICategoryRepositoty _categoryRepository;
-        private readonly ICandyRatingRepository _candyRatingRepository;
-        private readonly AppDbContext _appDbContext;
+        public  ICandyRepository _candyRepository;
+        public  ICategoryRepositoty _categoryRepository;
+        public  ICandyRatingRepository _candyRatingRepository;
+        public  AppDbContext _appDbContext;
 
         public CandyController(ICandyRepository candyRepository, ICategoryRepositoty categoryRepository, AppDbContext appDbContext, ICandyRatingRepository candyRatingRepository)
         {
