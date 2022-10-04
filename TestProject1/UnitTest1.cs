@@ -1,5 +1,8 @@
 using Candyshop.Controllers;
 using Candyshop.Models;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Moq;
 using System;
 using System.ComponentModel.DataAnnotations;
 
@@ -7,37 +10,46 @@ namespace Candyshop.Tests
 {
     public class Tests
     {
-        private readonly ICandyRepository candyRepository;
-        private readonly ICategoryRepositoty categoryRepository;
-        private readonly AppDbContext appDbContext;
-        private readonly ICandyRatingRepository candyRatingRepository;
+        private readonly Mock<ICandyRepository> _candyMockRepo;
+        private readonly Mock<ICategoryRepositoty> _categoryMockRepo;
+        private readonly Mock<AppDbContext> _appDbContexMockRepo;
+        private readonly Mock<ICandyRatingRepository> _CandyRatingRepoMockRepo;
+        private readonly CandyController _candyController;
 
-        private Controllers.CandyController _candyController { get; set; } = null!;
-        
+        public Tests()
+        {
+            _candyMockRepo = new Mock<ICandyRepository>();
+            _categoryMockRepo = new Mock<ICategoryRepositoty>();
+            _appDbContexMockRepo = new Mock<AppDbContext>();
+            _CandyRatingRepoMockRepo = new Mock<ICandyRatingRepository>();
+            _candyController = new CandyController(_candyMockRepo.Object, _categoryMockRepo.Object, _appDbContexMockRepo.Object, _CandyRatingRepoMockRepo.Object);
+        }
+
 
         [SetUp]
         public void Setup()
         {
-           
-
+            
 
         }
 
-        [TestCase("Kim")]
-        
-        public void SearchFunction( string testWord)
+        [TestCase("Tasty")]
+        public void SearchFunction( string searchTerm)
         {
 
-            //Assign
+            //arrange
+            _candyMockRepo.Setup(repo => repo.GetAllCandy)
+         .Returns(new List<Candy>() {
+             new Candy { CandyId = 1, AmountInStock = 101, CategoryId = 1, Description = "candy1", ImageThumbnailUrl = "canyThumb_1.png", ImageUrl = "canyPic_1.png", IsInStock = true, IsOnSale = false, Name = "QuiteTastyCandy1", Price = 100000},
+             new Candy { CandyId = 2, AmountInStock = 102, CategoryId = 2, Description = "candy2", ImageThumbnailUrl = "candyThumb_2.png", ImageUrl = "canyPic_2.png", IsInStock = true, IsOnSale = false, Name = "QuiteTastyCandy2", Price = 200000}
+         });
 
-               
-            _candyController = new CandyController(candyRepository,categoryRepository,appDbContext,candyRatingRepository);
-
-            var searchResult = _candyController.CandySearch(testWord);
+            //Act
+            var result = _candyController.CandySearch(searchTerm) as ViewResult;
+            var candies = result.Model as List<Candy>;
 
             //Assert
-
-            Assert.False(searchResult.isEmpty());
+            Assert.That(candies.Count, Is.EqualTo(2));
         }
     }
 }
