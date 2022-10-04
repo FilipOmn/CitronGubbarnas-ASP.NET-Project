@@ -61,8 +61,31 @@ namespace Candyshop.Controllers
             return View(new CandyListViewModel 
             {
                 Candies = candies, 
-                CurrentCategory = currentCategory });
-            }
+                CurrentCategory = currentCategory 
+            });
+        }
+
+        public IActionResult CandySearch(string search)
+        {
+            var candiesSearched = _candyRepository.GetAllCandy.Where(c => c.Name.ToLower().Contains($"{search}".ToLower())).ToList();
+            ViewBag.Search = search;
+
+            return View(candiesSearched);
+        }
+
+        [HttpGet]
+        public IActionResult SearchAutoComplete()
+        {
+            var term = HttpContext.Request.Query["term"].ToString();
+            var query = (from c in _candyRepository.GetAllCandy
+                         where c.Name.ToLower().Contains(term.ToLower())
+                         select new
+                         {
+                             label = c.Name,
+                             category = c.Category.CategoryName
+                         }).ToList();
+            return Ok(query);
+        }
 
         public IActionResult Details(int id)
         {
