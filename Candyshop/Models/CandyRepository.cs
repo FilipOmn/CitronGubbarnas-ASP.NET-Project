@@ -30,6 +30,13 @@ namespace Candyshop.Models
                 return _appDbContext.Candies.Include(c => c.Category).Where(p => p.IsOnSale);
             }
         }
+        public IEnumerable<Candy> GetNewCandy
+        {
+            get
+            {
+                return _appDbContext.Candies.Include(c => c.Category).Where(p => p.IsNew);
+            }
+        }
 
         public Candy GetCandyById(int candyId)
         {

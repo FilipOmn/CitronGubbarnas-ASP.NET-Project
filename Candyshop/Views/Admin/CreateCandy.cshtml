@@ -44,13 +44,20 @@
                     </label>
                 </div>
             </div>
+             <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="Candy.IsNew" /> @Html.DisplayNameFor(model => model.Candy.IsNew)
+                    </label>
+                </div>
+            </div>
             <div class="form-group">
                 <div class="checkbox">
                     <label>
                         <input asp-for="Candy.IsInStock" /> @Html.DisplayNameFor(model => model.Candy.IsInStock)
                     </label>
                 </div>
-            </div>
+            </div>            
             <div class="form-group">
                 <label asp-for="Candy.AmountInStock" class="control-label"></label>
                 <input asp-for="Candy.AmountInStock" class="form-control" />
