@@ -92,6 +92,7 @@ namespace Candyshop.Controllers
             var candyViewModel = new CandyViewModel();
             candyViewModel.Candy = _candyRepository.GetCandyById(id);
             candyViewModel.CandyRatings = _candyRatingRepository.GetAllRatingsForSpecificCandy(id);
+            candyViewModel.RatingSum = CandyRatingRepository.GetAverageRating(candyViewModel.CandyRatings);  //_candyRatingRepository.GetAverageRating(candyViewModel.CandyRatings);
             if (candyViewModel.Candy == null)
             {
                 return NotFound();

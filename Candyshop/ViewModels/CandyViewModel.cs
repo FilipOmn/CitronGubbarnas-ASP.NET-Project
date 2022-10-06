@@ -8,7 +8,7 @@ namespace Candyshop.ViewModels
     {
         public Candy Candy { get; set; }
         public CandyRating CandyRating { get; set; }
-        public float RatingSum { get; set; }   
+        public double RatingSum { get; set; }   
         public List<CandyRating> CandyRatings { get; set; }   
     }
 }

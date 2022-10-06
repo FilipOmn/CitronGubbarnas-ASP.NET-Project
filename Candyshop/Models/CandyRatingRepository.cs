@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -43,6 +44,23 @@ namespace Candyshop.Models
                 candyRatings.Add(rating);
             }
             return candyRatings;
+        }
+        public static double GetAverageRating(List<CandyRating> candyRatings)
+        {
+            if(candyRatings.Count != 0)
+            {
+                float result = 0;
+                foreach (var r in candyRatings)
+                {
+                    result = result + r.Rating;
+                }
+                result = result / candyRatings.Count;
+                double ratingSum = Math.Round(result, 0);
+                return ratingSum;
+
+            }
+            return 0;
+            
         }
     }
 }

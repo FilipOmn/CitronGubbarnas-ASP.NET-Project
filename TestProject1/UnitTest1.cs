@@ -15,6 +15,7 @@ namespace Candyshop.Tests
         private readonly Mock<AppDbContext> _appDbContexMockRepo;
         private readonly Mock<ICandyRatingRepository> _CandyRatingRepoMockRepo;
         private readonly CandyController _candyController;
+        
 
         public Tests()
         {
@@ -23,6 +24,8 @@ namespace Candyshop.Tests
             _appDbContexMockRepo = new Mock<AppDbContext>();
             _CandyRatingRepoMockRepo = new Mock<ICandyRatingRepository>();
             _candyController = new CandyController(_candyMockRepo.Object, _categoryMockRepo.Object, _appDbContexMockRepo.Object, _CandyRatingRepoMockRepo.Object);
+
+            
         }
 
 
@@ -50,6 +53,23 @@ namespace Candyshop.Tests
 
             //Assert
             Assert.That(candies.Count, Is.EqualTo(2));
+        }
+
+        [TestCase]
+        public void CalculateAverageRating()
+        {
+            //Assign
+            List<CandyRating> testRatings = new List<CandyRating>();
+            testRatings.Add(new CandyRating { Rating = 2 });
+            testRatings.Add(new CandyRating { Rating = 5 });
+            testRatings.Add(new CandyRating { Rating = 1 });
+
+            //Act
+            var result = CandyRatingRepository.GetAverageRating(testRatings);
+            int resulttoint = Convert.ToInt32(result);
+
+            //Assert
+            Assert.That(resulttoint, Is.EqualTo(3));
         }
     }
 }

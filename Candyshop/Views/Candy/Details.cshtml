@@ -20,19 +20,11 @@
         <h3><a href="#">@Model.Candy.Name</a></h3>
         <div style="margin-left: 20px">
             
-            @if (Model.CandyRatings.Count != 0)
+            @if (Model.RatingSum != 0)
             {
-
-                foreach (var r in Model.CandyRatings)
-                {
-                    Model.RatingSum = Model.RatingSum + r.Rating;
-                }
-                Model.RatingSum = Model.RatingSum / Model.Candy.candyRatings.Count();
-
-                double ratingSum = Math.Round(Model.RatingSum, 0);
-                <input id="starshow-id" class="rating" data-size="lg" value="@ratingSum" disabled/>
+                <input id="starshow-id" class="rating" data-size="lg" value="@Model.RatingSum" disabled/>
             }
-            else if (Model.CandyRatings.Count == 0)
+            else if (Model.RatingSum == 0)
             {
                 <input id="starshow-id" type="text" class="rating" data-size="lg" value="0" disabled>
             }

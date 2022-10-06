@@ -7,8 +7,5 @@ namespace Candyshop.Models
         public void AddRatingToCandy(int candyId, CandyRating candyRating);
         public IEnumerable<CandyRating> GetAllRatings();
         public List<CandyRating> GetAllRatingsForSpecificCandy(int candyid);
-
-
-
     }
 }
