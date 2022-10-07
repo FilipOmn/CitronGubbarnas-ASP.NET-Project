@@ -10,12 +10,14 @@ namespace Candyshop.Models
 {
     public class AppDbContext : IdentityDbContext<IdentityUser>
     {
+        public AppDbContext() { }
         public AppDbContext(DbContextOptions<AppDbContext> options ) : base (options)
         {
 
         }
         
         public DbSet<Candy> Candies { get; set; }
+        public DbSet<CandyRating> CandyRatings { get; set; }
         public DbSet<Category> Categores { get; set; }
         public DbSet<ShoppingCartItem> ShoppingCartItems { get; set; }
         public DbSet<Order> Orders { get; set; }

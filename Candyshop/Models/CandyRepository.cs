@@ -42,5 +42,7 @@ namespace Candyshop.Models
         {
             return _appDbContext.Candies.FirstOrDefault(c => c.CandyId == candyId);
         }
+
+       
     }
 }
