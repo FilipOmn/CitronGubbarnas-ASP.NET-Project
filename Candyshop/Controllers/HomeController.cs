@@ -40,8 +40,14 @@ namespace Candyshop.Controllers
             var homeViewModel = new HomeViewModel
             {
                 CandyOnSale = _candyRepository.GetCandyOnSale.Where(c => c.AmountInStock > 0 && c.IsInStock == true && c.SalePercentage > 1 
-                                && c.IsOnSale == true && c.SaleStartDate <= date && c.SaleEndDate >= date)
+                                && c.IsOnSale == true && c.SaleStartDate <= date && c.SaleEndDate >= date),
+
+                NewCandy = _candyRepository.GetNewCandy.Where(c => c.IsNew == true)
+
             };
+
+           
+
 
             return View(homeViewModel);
         }

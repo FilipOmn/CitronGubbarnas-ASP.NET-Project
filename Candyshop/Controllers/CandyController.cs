@@ -1,4 +1,4 @@
-﻿using Candyshop.Models;
+using Candyshop.Models;
 using Candyshop.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -23,7 +23,7 @@ namespace Candyshop.Controllers
             _candyRatingRepository = candyRatingRepository;
         }
 
-        public ViewResult List(string category)
+        public ViewResult List(string category, bool isNew)
         {
              
             IEnumerable<Candy> candies;
@@ -58,9 +58,19 @@ namespace Candyshop.Controllers
 
                 currentCategory = _categoryRepository.GetAllCategories.FirstOrDefault(c => c.CategoryName == category)?.CategoryName;
             }
+            if (isNew == true)
+            {
+                candies = _candyRepository.GetAllCandy.Where(c => c.IsNew == true && c.AmountInStock > 0 && c.IsInStock == true);
+                currentCategory = "NEW Candy";
+
+            }
             return View(new CandyListViewModel 
             {
                 Candies = candies, 
+
+                CurrentCategory = currentCategory });
+            }
+        
                 CurrentCategory = currentCategory 
             });
         }
