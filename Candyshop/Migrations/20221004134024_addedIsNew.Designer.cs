@@ -4,14 +4,16 @@ using Candyshop.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Candyshop.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221004134024_addedIsNew")]
+    partial class addedIsNew
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -56,9 +58,6 @@ namespace Candyshop.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int>("RatingId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("SaleEndDate")
                         .HasColumnType("datetime2");
 
@@ -88,7 +87,6 @@ namespace Candyshop.Migrations
                             IsOnSale = false,
                             Name = "Assorted Chocolet Candy",
                             Price = 4.95m,
-                            RatingId = 0,
                             SaleEndDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SalePercentage = 0m,
                             SaleStartDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
@@ -106,7 +104,6 @@ namespace Candyshop.Migrations
                             IsOnSale = true,
                             Name = "Assorted Chocolet Candy",
                             Price = 3.95m,
-                            RatingId = 0,
                             SaleEndDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SalePercentage = 0m,
                             SaleStartDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
@@ -124,7 +121,6 @@ namespace Candyshop.Migrations
                             IsOnSale = true,
                             Name = "Assorted Chocolet Candy",
                             Price = 2.95m,
-                            RatingId = 0,
                             SaleEndDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SalePercentage = 0m,
                             SaleStartDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
@@ -142,7 +138,6 @@ namespace Candyshop.Migrations
                             IsOnSale = true,
                             Name = "Assorted Fruit Candy",
                             Price = 6.95m,
-                            RatingId = 0,
                             SaleEndDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SalePercentage = 0m,
                             SaleStartDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
@@ -160,7 +155,6 @@ namespace Candyshop.Migrations
                             IsOnSale = false,
                             Name = "Assorted Fruit Candy",
                             Price = 3.95m,
-                            RatingId = 0,
                             SaleEndDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SalePercentage = 0m,
                             SaleStartDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
@@ -178,7 +172,6 @@ namespace Candyshop.Migrations
                             IsOnSale = true,
                             Name = "Assorted Fruit Candy",
                             Price = 4.95m,
-                            RatingId = 0,
                             SaleEndDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SalePercentage = 0m,
                             SaleStartDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
@@ -196,7 +189,6 @@ namespace Candyshop.Migrations
                             IsOnSale = false,
                             Name = "Assorted Gummy Candy",
                             Price = 4.95m,
-                            RatingId = 0,
                             SaleEndDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SalePercentage = 0m,
                             SaleStartDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
@@ -214,7 +206,6 @@ namespace Candyshop.Migrations
                             IsOnSale = true,
                             Name = "Assorted Gummy Candy",
                             Price = 6.95m,
-                            RatingId = 0,
                             SaleEndDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SalePercentage = 0m,
                             SaleStartDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
@@ -232,7 +223,6 @@ namespace Candyshop.Migrations
                             IsOnSale = true,
                             Name = "Assorted Gummy Candy",
                             Price = 4.95m,
-                            RatingId = 0,
                             SaleEndDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SalePercentage = 0m,
                             SaleStartDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
@@ -250,7 +240,6 @@ namespace Candyshop.Migrations
                             IsOnSale = true,
                             Name = "Assorted Halloween Candy",
                             Price = 3.95m,
-                            RatingId = 0,
                             SaleEndDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SalePercentage = 0m,
                             SaleStartDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
@@ -268,7 +257,6 @@ namespace Candyshop.Migrations
                             IsOnSale = true,
                             Name = "Assorted Halloween Candy",
                             Price = 5.95m,
-                            RatingId = 0,
                             SaleEndDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SalePercentage = 0m,
                             SaleStartDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
@@ -286,7 +274,6 @@ namespace Candyshop.Migrations
                             IsOnSale = true,
                             Name = "Assorted Halloween Candy",
                             Price = 6.95m,
-                            RatingId = 0,
                             SaleEndDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SalePercentage = 0m,
                             SaleStartDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
@@ -304,7 +291,6 @@ namespace Candyshop.Migrations
                             IsOnSale = false,
                             Name = "Assorted Hard Candy",
                             Price = 3.95m,
-                            RatingId = 0,
                             SaleEndDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SalePercentage = 0m,
                             SaleStartDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
@@ -322,7 +308,6 @@ namespace Candyshop.Migrations
                             IsOnSale = true,
                             Name = "Assorted Hard Candy",
                             Price = 2.95m,
-                            RatingId = 0,
                             SaleEndDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SalePercentage = 0m,
                             SaleStartDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
@@ -340,34 +325,10 @@ namespace Candyshop.Migrations
                             IsOnSale = false,
                             Name = "Assorted Hard Candy",
                             Price = 5.95m,
-                            RatingId = 0,
                             SaleEndDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SalePercentage = 0m,
                             SaleStartDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
-                });
-
-            modelBuilder.Entity("Candyshop.Models.CandyRating", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("CandyId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("CustomerName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<float>("Rating")
-                        .HasColumnType("real");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CandyId");
-
-                    b.ToTable("CandyRatings");
                 });
 
             modelBuilder.Entity("Candyshop.Models.Category", b =>
@@ -717,15 +678,6 @@ namespace Candyshop.Migrations
                     b.HasOne("Candyshop.Models.Category", "Category")
                         .WithMany("Candies")
                         .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("Candyshop.Models.CandyRating", b =>
-                {
-                    b.HasOne("Candyshop.Models.Candy", "candy")
-                        .WithMany("candyRatings")
-                        .HasForeignKey("CandyId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

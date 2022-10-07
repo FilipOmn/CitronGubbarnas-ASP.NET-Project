@@ -4,14 +4,16 @@ using Candyshop.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Candyshop.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221003074846_Added new table CandyRatings")]
+    partial class AddednewtableCandyRatings
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -42,9 +44,6 @@ namespace Candyshop.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsInStock")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsNew")
                         .HasColumnType("bit");
 
                     b.Property<bool>("IsOnSale")
@@ -84,7 +83,6 @@ namespace Candyshop.Migrations
                             ImageThumbnailUrl = "\\Images\\thumbnails\\chocolateCandy3-small.jpg",
                             ImageUrl = "\\Images\\chocolet.candy.jpg",
                             IsInStock = true,
-                            IsNew = false,
                             IsOnSale = false,
                             Name = "Assorted Chocolet Candy",
                             Price = 4.95m,
@@ -102,7 +100,6 @@ namespace Candyshop.Migrations
                             ImageThumbnailUrl = "\\Images\\thumbnails\\chocolateCandy-small.jpg",
                             ImageUrl = "\\Images\\chocolateCandy.jpg",
                             IsInStock = true,
-                            IsNew = false,
                             IsOnSale = true,
                             Name = "Assorted Chocolet Candy",
                             Price = 3.95m,
@@ -120,7 +117,6 @@ namespace Candyshop.Migrations
                             ImageThumbnailUrl = "\\Images\\thumbnails\\chocolateCandy2-small.jpg",
                             ImageUrl = "\\Images\\chocolateCandy2.jpg",
                             IsInStock = true,
-                            IsNew = false,
                             IsOnSale = true,
                             Name = "Assorted Chocolet Candy",
                             Price = 2.95m,
@@ -138,7 +134,6 @@ namespace Candyshop.Migrations
                             ImageThumbnailUrl = "\\Images\\thumbnails\\FruitCandy-small.jpg",
                             ImageUrl = "\\Images\\FruitCandy.jpg",
                             IsInStock = true,
-                            IsNew = false,
                             IsOnSale = true,
                             Name = "Assorted Fruit Candy",
                             Price = 6.95m,
@@ -156,7 +151,6 @@ namespace Candyshop.Migrations
                             ImageThumbnailUrl = "\\Images\\thumbnails\\fruitCandy2-small.jpg",
                             ImageUrl = "\\Images\\fruitCandy2.jpg",
                             IsInStock = true,
-                            IsNew = false,
                             IsOnSale = false,
                             Name = "Assorted Fruit Candy",
                             Price = 3.95m,
@@ -174,7 +168,6 @@ namespace Candyshop.Migrations
                             ImageThumbnailUrl = "\\Images\\thumbnails\\fruitCandy3-small.jpg",
                             ImageUrl = "\\Images\\fruitCandy3.jpg",
                             IsInStock = false,
-                            IsNew = false,
                             IsOnSale = true,
                             Name = "Assorted Fruit Candy",
                             Price = 4.95m,
@@ -192,7 +185,6 @@ namespace Candyshop.Migrations
                             ImageThumbnailUrl = "\\Images\\thumbnails\\gummyCandy-small.jpg",
                             ImageUrl = "\\Images\\gummyCandy.jpg",
                             IsInStock = true,
-                            IsNew = false,
                             IsOnSale = false,
                             Name = "Assorted Gummy Candy",
                             Price = 4.95m,
@@ -210,7 +202,6 @@ namespace Candyshop.Migrations
                             ImageThumbnailUrl = "\\Images\\thumbnails\\gummyCandy2-small.jpg",
                             ImageUrl = "\\Images\\gummyCandy2.jpg",
                             IsInStock = true,
-                            IsNew = false,
                             IsOnSale = true,
                             Name = "Assorted Gummy Candy",
                             Price = 6.95m,
@@ -228,7 +219,6 @@ namespace Candyshop.Migrations
                             ImageThumbnailUrl = "\\Images\\thumbnails\\gummyCandy3-small.jpg",
                             ImageUrl = "\\Images\\gummyCandy3.jpg",
                             IsInStock = true,
-                            IsNew = false,
                             IsOnSale = true,
                             Name = "Assorted Gummy Candy",
                             Price = 4.95m,
@@ -246,7 +236,6 @@ namespace Candyshop.Migrations
                             ImageThumbnailUrl = "\\Images\\thumbnails\\halloweenCandy-small.jpg",
                             ImageUrl = "\\Images\\halloweenCandy.jpg",
                             IsInStock = true,
-                            IsNew = false,
                             IsOnSale = true,
                             Name = "Assorted Halloween Candy",
                             Price = 3.95m,
@@ -264,7 +253,6 @@ namespace Candyshop.Migrations
                             ImageThumbnailUrl = "\\Images\\thumbnails\\halloweenCandy2-small.jpg",
                             ImageUrl = "\\Images\\halloweenCandy2.jpg",
                             IsInStock = false,
-                            IsNew = false,
                             IsOnSale = true,
                             Name = "Assorted Halloween Candy",
                             Price = 5.95m,
@@ -282,7 +270,6 @@ namespace Candyshop.Migrations
                             ImageThumbnailUrl = "\\Images\\thumbnails\\halloweenCandy3-small.jpg",
                             ImageUrl = "\\Images\\halloweenCandy3.jpg",
                             IsInStock = true,
-                            IsNew = false,
                             IsOnSale = true,
                             Name = "Assorted Halloween Candy",
                             Price = 6.95m,
@@ -300,7 +287,6 @@ namespace Candyshop.Migrations
                             ImageThumbnailUrl = "\\Images\\thumbnails\\hardCandy-small.jpg",
                             ImageUrl = "\\Images\\hardCandy.jpg",
                             IsInStock = true,
-                            IsNew = false,
                             IsOnSale = false,
                             Name = "Assorted Hard Candy",
                             Price = 3.95m,
@@ -318,7 +304,6 @@ namespace Candyshop.Migrations
                             ImageThumbnailUrl = "\\Images\\thumbnails\\hardCandy2-small.jpg",
                             ImageUrl = "\\Images\\hardCandy2.jpg",
                             IsInStock = false,
-                            IsNew = false,
                             IsOnSale = true,
                             Name = "Assorted Hard Candy",
                             Price = 2.95m,
@@ -336,7 +321,6 @@ namespace Candyshop.Migrations
                             ImageThumbnailUrl = "\\Images\\thumbnails\\hardCandy3-small.jpg",
                             ImageUrl = "\\Images\\hardCandy3.jpg",
                             IsInStock = true,
-                            IsNew = false,
                             IsOnSale = false,
                             Name = "Assorted Hard Candy",
                             Price = 5.95m,
