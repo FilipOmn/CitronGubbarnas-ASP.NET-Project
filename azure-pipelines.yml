@@ -82,4 +82,4 @@ stages:
             inputs:
               azureSubscription: 'Resource Manager - Stjarnorna - Candyshop'
               appName: '$(WebAppName)'
-              package: '$(Pipeline.Workspace)/drop/$(buildConfiguration)/poop.zip'
+              package: '$(Pipeline.Workspace)/drop/$(buildConfiguration)/Candyshop.zip'
