@@ -7,11 +7,7 @@ trigger:
 - master
 
 variables:
-  variables:
-  solution: '**/*.sln'
-  buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
-  dotnetSdkVersion: '6.x'
 
 stages:
 - stage: 'Build'
@@ -52,14 +48,6 @@ stages:
         projects: '**/*.csproj'
 
     - task: DotNetCoreCLI@2
-    displayName: 'Run unit tests - $(buildConfiguration)'
-    inputs:
-      command: 'test'
-      arguments: '--no-build --configuration $(buildConfiguration)'
-      publishTestResults: true
-      projects: '**/*.Tests.csproj'
-
-    - task: DotNetCoreCLI@2
       displayName: 'Publish the project - $(buildConfiguration)'
       inputs:
         command: 'publish'
@@ -93,4 +81,3 @@ stages:
               azureSubscription: 'Resource Manager - Stjarnorna - Candyshop'
               appName: '$(WebAppName)'
               package: '$(Pipeline.Workspace)/drop/$(buildConfiguration)/*.zip'
-
