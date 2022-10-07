@@ -1,0 +1,15 @@
+﻿@model IEnumerable<Candy>
+
+@{ if (Model.Any())
+    {
+        <h1>Results for "@ViewBag.search"</h1>
+        @foreach (var candy in Model)
+        {
+            <partial name="_candyCard" model="candy" />
+        }
+    }
+    else
+    {
+        <h1>No Results for "@ViewBag.search" found</h1>
+    }
+}

@@ -36,6 +36,7 @@ namespace Candyshop
 
             services.AddControllersWithViews();
             services.AddScoped<ICategoryRepositoty, CategoryRepository>();
+            services.AddScoped<ICandyRatingRepository, CandyRatingRepository>();
             services.AddScoped<ICandyRepository, CandyRepository>();
             services.AddScoped<ShoppingCart>(sc => ShoppingCart.GetCart(sc));
             services.AddScoped<IOrderRepository, OrderRepository>();
