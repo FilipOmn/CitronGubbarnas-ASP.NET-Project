@@ -56,9 +56,6 @@ stages:
         arguments: '--no-build --configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)/$(buildConfiguration)'
         zipAfterPublish: true
 
-    - publish: '$(Build.ArtifactStagingDirectory)'
-      artifact: drop
-
 - stage: 'Deploy'
   displayName: 'Deploy the web application'
   dependsOn: Build
@@ -75,4 +72,9 @@ stages:
           steps:
           - download: current
             artifact: drop
-          
+          - task: AzureWebApp@1
+            displayName: 'Azure App Service Deploy: website'
+            inputs:
+              azureSubscription: 'Resource Manager - Stjarnorna - Candyshop'
+              appName: '$(WebAppName)'
+              package: '$(Pipeline.Workspace)/drop/$(buildConfiguration)/*.zip'
