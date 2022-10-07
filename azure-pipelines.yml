@@ -5,6 +5,7 @@
 
 trigger:
 - master
+
 variables:
   buildConfiguration: 'Release'
 stages:
@@ -48,6 +49,9 @@ stages:
         arguments: '--no-build --configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)/$(buildConfiguration)'
         zipAfterPublish: true
 
+   - publish: '$(Build.ArtifactStagingDirectory)'
+      artifact: drop
+
 
 
 - stage: 'Deploy'
@@ -71,5 +75,4 @@ stages:
             inputs:
               azureSubscription: 'Resource Manager - Stjarnorna - Candyshop'
               appName: '$(WebAppName)'
-              deployToSlotOrASE: true
               package: '$(Pipeline.Workspace)/drop/$(buildConfiguration)/*.zip'
