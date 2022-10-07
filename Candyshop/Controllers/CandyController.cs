@@ -10,10 +10,10 @@ namespace Candyshop.Controllers
 {
     public class CandyController : Controller
     {
-        public  ICandyRepository _candyRepository;
-        public  ICategoryRepositoty _categoryRepository;
-        public  ICandyRatingRepository _candyRatingRepository;
-        public  AppDbContext _appDbContext;
+        public ICandyRepository _candyRepository;
+        public ICategoryRepositoty _categoryRepository;
+        public ICandyRatingRepository _candyRatingRepository;
+        public AppDbContext _appDbContext;
 
         public CandyController(ICandyRepository candyRepository, ICategoryRepositoty categoryRepository, AppDbContext appDbContext, ICandyRatingRepository candyRatingRepository)
         {
@@ -25,7 +25,7 @@ namespace Candyshop.Controllers
 
         public ViewResult List(string category, bool isNew)
         {
-             
+
             IEnumerable<Candy> candies;
             string currentCategory;
 
@@ -50,7 +50,7 @@ namespace Candyshop.Controllers
             if (string.IsNullOrEmpty(category))
             {
                 candies = _candyRepository.GetAllCandy.Where(c => c.AmountInStock > 0 && c.IsInStock == true);
-                currentCategory ="All Candy";
+                currentCategory = "All Candy";
             }
             else
             {
@@ -64,16 +64,14 @@ namespace Candyshop.Controllers
                 currentCategory = "NEW Candy";
 
             }
-            return View(new CandyListViewModel 
+            return View(new CandyListViewModel
             {
-                Candies = candies, 
+                Candies = candies,
 
-                CurrentCategory = currentCategory });
-            }
-        
-                CurrentCategory = currentCategory 
+                CurrentCategory = currentCategory
             });
         }
+     
 
         public IActionResult CandySearch(string search)
         {
@@ -118,4 +116,4 @@ namespace Candyshop.Controllers
             return View(viewModel);
         }
     }
-}
+} 
