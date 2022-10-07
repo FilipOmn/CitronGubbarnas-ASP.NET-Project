@@ -15,6 +15,8 @@ namespace Candyshop.Models
         public string ImageThumbnailUrl { get; set; }
         public bool IsOnSale { get; set; }
         public decimal SalePercentage { get; set; }
+
+        public bool IsNew { get; set; } 
         
         public DateTime SaleStartDate { get; set; }
         public DateTime SaleEndDate { get; set; } 
@@ -22,5 +24,9 @@ namespace Candyshop.Models
         public int AmountInStock { get; set; }
         public int CategoryId { get; set; }
         public Category Category { get; set; }
+
+        //Navigation Properties
+        public virtual ICollection<CandyRating> candyRatings { get; set; } 
+        public int RatingId { get; set; }
     }
 }

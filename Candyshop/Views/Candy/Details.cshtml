@@ -1,31 +1,60 @@
-﻿@model Candy
-<h1>@Model.Name</h1>
+﻿@model CandyViewModel
+
+<h1>@Model.Candy.Name</h1>
 
 <div class="thumbnail">
-    <img alt="@Model.Name" src="@Model.ImageUrl" />
+    <img alt="@Model.Candy.Name" src="@Model.Candy.ImageUrl" />
     <div class="caption-full">
-        @if (Model.IsOnSale)
+        @if (Model.Candy.IsOnSale)
         {
             <h4 class="pull-right">
-                <span class="text-danger">@Convert.ToInt32(Model.SalePercentage)% </span>
-                <span class="text-danger">@(Math.Round(Model.Price * ((100 - Model.SalePercentage)/100), 2)) kr</span>
-                <span class="text-muted">@Model.Price.ToString() kr</span>
+                <span class="text-danger">@Convert.ToInt32(Model.Candy.SalePercentage)% </span>
+                <span class="text-danger">@(Math.Round(Model.Candy.Price * ((100 - Model.Candy.SalePercentage) / 100), 2)) kr</span>
+                <span class="text-muted">@Model.Candy.Price.ToString() kr</span>
             </h4>
         }
         else
         {
-            <h4 class="pull-right">@Model.Price.ToString() kr</h4>
+            <h4 class="pull-right">@Model.Candy.Price.ToString() kr</h4>
         }
-        <h3><a href="#">@Model.Name</a></h3>
-        <p>@Model.Description</p>
-        <p>In stock: @Model.AmountInStock</p>
-    </div>
-    <div class="addToCart">
-        <p class="button">
-            <a class="btn btn-primary"
-               asp-controller="ShoppingCart"
-               asp-action="AddToShoppingCart"
-               asp-route-candyId="@Model.CandyId">Add to Cart</a>
-        </p>
+        <h3><a href="#">@Model.Candy.Name</a></h3>
+        <div style="margin-left: 20px">
+            
+            @if (Model.RatingSum != 0)
+            {
+                <input id="starshow-id" class="rating" data-size="lg" value="@Model.RatingSum" disabled/>
+            }
+            else if (Model.RatingSum == 0)
+            {
+                <input id="starshow-id" type="text" class="rating" data-size="lg" value="0" disabled>
+            }
+
+        </div>
+
+        <div class="row" style="margin-left: 20px">
+            <p>@Model.Candy.Description</p>
+            <p>In stock: @Model.Candy.AmountInStock</p>
+
+            <div class="addToCart">
+                <p class="button btn-lg">
+                    <a class="btn btn-primary"
+                       asp-controller="ShoppingCart"
+                       asp-action="AddToShoppingCart"
+                       asp-route-candyId="@Model.Candy.CandyId">Add to Cart</a>
+                </p>
+            </div>
+            <div>
+                <h1>🍭🍬🍬🍬🍭🍬🍬🍬🍭🍬🍬🍬🍭🍬🍬🍬</h1>
+                <h3>Rate this Candy?</h3>
+                <form asp-controller="Candy" asp-action="RatingSuccess" asp-route-candyId="@Model.Candy.CandyId" method="post">
+                    <input asp-for="CandyRating.Rating" id="star-id" type="text" class="rating pull-right" data-size="lg" min=0 max=5 required="required">
+                    <div class="mb-3">
+                        <label class="form-label">Your Name</label>
+                        <input asp-for="CandyRating.CustomerName" style="margin: 10px"id="customer-name" type="text" required="required" />
+                        <button type="submit" class="btn btn-danger">Submit rating</button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
 </div>
