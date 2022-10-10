@@ -119,6 +119,6 @@ namespace Candyshop.Tests
             Assert.That(candies.Candies.Count, Is.EqualTo(2));
         }
 
-        //Tests
+        
     }
 }
