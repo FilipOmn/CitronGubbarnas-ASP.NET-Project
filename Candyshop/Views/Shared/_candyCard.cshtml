@@ -10,7 +10,7 @@
                 <h4 class="pull-right">
                     <span class="text-danger">@Convert.ToInt32(Model.SalePercentage)% </span>
                     <span class="text-danger">@(Math.Round(Model.Price * ((100 - Model.SalePercentage)/100), 2)) kr</span>
-                    <span class="text-muted">@Model.Price.ToString() kr</span>
+                    <span class="text-muted"><s>@Model.Price.ToString() kr</s></span>
                 </h4 >
              }
              else

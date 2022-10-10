@@ -23,7 +23,7 @@ namespace Candyshop.Controllers
             _candyRatingRepository = candyRatingRepository;
         }
 
-        public ViewResult List(string category, bool isNew)
+        public ViewResult List(string category, bool isNew, bool isOnSale)
         {
 
             IEnumerable<Candy> candies;
@@ -62,6 +62,13 @@ namespace Candyshop.Controllers
             {
                 candies = _candyRepository.GetAllCandy.Where(c => c.IsNew == true && c.AmountInStock > 0 && c.IsInStock == true);
                 currentCategory = "NEW Candy";
+
+            }
+            if (isOnSale == true)
+            {
+                candies = _candyRepository.GetAllCandy.Where(c => c.IsOnSale == true && c.AmountInStock > 0 && c.IsInStock == true);
+                currentCategory = "HOT SALES";
+                candies = candies.OrderByDescending(c => c.SalePercentage);
 
             }
             return View(new CandyListViewModel
