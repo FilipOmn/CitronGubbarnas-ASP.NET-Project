@@ -17,10 +17,12 @@ namespace Candyshop.Controllers
     {
         private readonly ICandyRepository _candyRepository;
         private readonly ICategoryRepositoty _categoryRepository;
+        private readonly ISendMessageRepository _sendMessageRepository;
         private readonly AppDbContext _appDbContext;
 
-        public AdminController(ICandyRepository candyRepository, ICategoryRepositoty categoryRepository, AppDbContext appDbContext)
+        public AdminController(ICandyRepository candyRepository, ICategoryRepositoty categoryRepository, AppDbContext appDbContext, ISendMessageRepository sendMessageRepository)
         {
+            _sendMessageRepository = sendMessageRepository;
             _candyRepository = candyRepository;
             _categoryRepository = categoryRepository;
             _appDbContext = appDbContext;
@@ -48,7 +50,7 @@ namespace Candyshop.Controllers
         {
             var candy = _candyRepository.GetCandyById(id);
 
-            if(candy != null)
+            if (candy != null)
             {
                 return View(new CandyCategoryViewModel
                 {
@@ -80,7 +82,7 @@ namespace Candyshop.Controllers
         {
             var candy = _candyRepository.GetCandyById(id);
 
-            if(candy != null)
+            if (candy != null)
             {
                 return View(candy);
             }
@@ -101,9 +103,9 @@ namespace Candyshop.Controllers
         [Authorize(Roles = "Admin")]
         public IActionResult CreateCandy()
         {
-            return View(new CandyCategoryViewModel 
+            return View(new CandyCategoryViewModel
             {
-                Category = _categoryRepository.GetAllCategories 
+                Category = _categoryRepository.GetAllCategories
             });
         }
 
@@ -130,7 +132,7 @@ namespace Candyshop.Controllers
 
             var jsonResponse = JsonConvert.DeserializeObject<dynamic>(response.Content);
 
-            if(currency == 1)
+            if (currency == 1)
             {
                 ViewBag.CurrencyExchange = jsonResponse.rates.EUR;
                 ViewBag.CurrencySymbol = "€";
@@ -178,7 +180,7 @@ namespace Candyshop.Controllers
             ViewBag.CurrencyExchange = 1m;
             ViewBag.CurrencySymbol = "Kr";
 
-            return View(new OrderOrderDetailsViewModel 
+            return View(new OrderOrderDetailsViewModel
             {
                 Orders = _appDbContext.Orders,
                 OrderDetails = _appDbContext.OrderDetails
@@ -201,6 +203,13 @@ namespace Candyshop.Controllers
         public IActionResult Dashboard()
         {
             return View();
+        }
+
+        public IActionResult Messages()
+        {
+            var messagesViewModel = new SendMessageViewModel();
+            messagesViewModel.SendMessages = _sendMessageRepository.GetAllMessages;
+            return View(messagesViewModel);
         }
     }
 }
