@@ -16,7 +16,8 @@ namespace Candyshop.Tests
         private readonly Mock<AppDbContext> _appDbContexMockRepo;
         private readonly Mock<ICandyRatingRepository> _CandyRatingRepoMockRepo;
         private readonly CandyController _candyController;
-
+        private readonly AdminController _adminController;
+        private readonly Mock<ISendMessageRepository> _messageMockRepo;
 
         public Tests()
         {
@@ -25,6 +26,8 @@ namespace Candyshop.Tests
             _appDbContexMockRepo = new Mock<AppDbContext>();
             _CandyRatingRepoMockRepo = new Mock<ICandyRatingRepository>();
             _candyController = new CandyController(_candyMockRepo.Object, _categoryMockRepo.Object, _appDbContexMockRepo.Object, _CandyRatingRepoMockRepo.Object);
+            _messageMockRepo = new Mock<ISendMessageRepository>();
+            _adminController = new AdminController(_candyMockRepo.Object, _categoryMockRepo.Object, _appDbContexMockRepo.Object, _messageMockRepo.Object);
 
 
         }
@@ -118,7 +121,26 @@ namespace Candyshop.Tests
             //Assert
             Assert.That(candies.Candies.Count, Is.EqualTo(2));
         }
-
         
+        [TestCase]
+        public void CheckForMessage()
+        {    
+            //arrange
+            _messageMockRepo.Setup(repo => repo.GetAllMessages)
+                .Returns(new List<SendMessage>(){
+                new SendMessage {id = 1, Name = "test", Email = "test@gmail.com", Subject = "test", Message = "test" },
+                new SendMessage {id = 2, Name = "test", Email = "test@gmail.com", Subject = "test", Message = "test" },
+                new SendMessage {id = 3, Name = "test", Email = "test@gmail.com", Subject = "test", Message = "test" }
+            });
+
+            //Act
+            var result = _adminController.Messages() as ViewResult;
+            var messages = result.Model as SendMessageViewModel;
+            
+            
+            //Assert
+            Assert.That(messages.SendMessages.Count, Is.EqualTo(3));
+        }
+
     }
 }

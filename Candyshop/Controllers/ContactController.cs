@@ -11,9 +11,11 @@ namespace Candyshop.Controllers
     public class ContactController : Controller
     {
         private readonly ISendMessageRepository _sendMessageRepository;
-        public ContactController(ISendMessageRepository sendMessageRepository)
+        private readonly AppDbContext _appDbContext;
+        public ContactController(ISendMessageRepository sendMessageRepository, AppDbContext appDbContext)
         {
             _sendMessageRepository = sendMessageRepository;
+            _appDbContext = appDbContext;
         }
         public IActionResult Index()
         {
