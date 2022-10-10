@@ -1,2 +1,33 @@
-﻿<h3>Please contact us sending email using the email link below</h3>
-<email adress="info@candyshop.com" link-text="contact us"></email>
+﻿
+@model SendMessageViewModel
+@{ ViewData["Title"] = "Contact Us "; }
+
+
+<h1>Contact</h1>
+
+<h4>Please contact us sending email using the email link below</h4>
+<hr />
+<form asp-controller="Contact" asp-action="CreateMessage" method="post">
+    <div class="form-group">
+        <label asp-for="@Model.SendMessage.Name"></label>
+        <input type="text" asp-for="@Model.SendMessage.Name" class="form-control" placeholder="Enter your name" required="required">
+        <span class="text-danger" asp-validation-for="@Model.SendMessage.Name"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.SendMessage.Email"></label>
+        <input type="text" asp-for="@Model.SendMessage.Email" class="form-control" placeholder="Enter your subject" required="required">
+        <span class="text-danger" asp-validation-for="@Model.SendMessage.Email"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.SendMessage.Subject"></label>
+        <input type="text" asp-for="@Model.SendMessage.Subject" class="form-control" placeholder="Enter your subject" required="required">
+        <span class="text-danger" asp-validation-for="@Model.SendMessage.Subject"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.SendMessage.Message"></label>
+        <textarea class="form-control" asp-for="@Model.SendMessage.Message" placeholder="Enter your message" required="required"> </textarea>
+        <span class="text-danger" asp-validation-for="@Model.SendMessage.Message"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Send Mail</button>
+
+</form>

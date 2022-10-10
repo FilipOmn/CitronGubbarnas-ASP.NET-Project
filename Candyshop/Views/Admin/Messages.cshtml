@@ -1,0 +1,29 @@
+﻿@model SendMessageViewModel
+<h1>Messages</h1>
+
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Subject</th>
+            <th>Message</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var message in Model.SendMessages)
+        {
+        <tr>
+
+            <td>@message.Name</td>
+            <td>@message.Email</td>
+            <td>@message.Subject</td>
+            <td>@message.Message</td>
+
+
+        </tr>
+}
+    </tbody>
+</table>
