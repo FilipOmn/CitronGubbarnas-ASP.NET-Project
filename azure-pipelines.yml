@@ -4,7 +4,7 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core
 
 trigger:
-- master
+- Release
 
 variables:
   buildConfiguration: 'Release'
@@ -68,7 +68,7 @@ stages:
   - deployment: Deploy
     pool:
       vmImage: 'ubuntu-20.04'
-    environment: dev
+    environment: Release
     variables:
     - group: Release
     strategy:
